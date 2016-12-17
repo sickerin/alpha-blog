@@ -9,16 +9,13 @@ class ArticlesController < ApplicationController
         @article = Article.new
     end
     
-    def edit
-        @article = Article.find(params[:id])
-    end
     
     def create
         #render plain: params[:article].inspect
+        @article = Article.new(params[:id])
         if @article.save
             flash[:notice] = "Your article was successfully created!"
             redirect_to articles_path(@article)
-        else
             render 'new'
         end 
     end
@@ -31,6 +28,9 @@ class ArticlesController < ApplicationController
         else
             render edit
         end
+    end
+    
+    def edit
     end
     
     def show
