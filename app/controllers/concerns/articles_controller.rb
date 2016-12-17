@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
     
     def create
         #render plain: params[:article].inspect
-        @article = Article.new(params[:id])
+        @article = Article.new(article_params)
         if @article.save
             flash[:notice] = "Your article was successfully created!"
             redirect_to articles_path(@article)
@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
     
     def edit
     end
-    
+
     def show
     end
     
@@ -49,6 +49,5 @@ class ArticlesController < ApplicationController
     
     def article_params
         params.require(:article).permit(:title, :description)
-    
     end
 end
